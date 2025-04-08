@@ -1,0 +1,29 @@
+@model List<BookManager.Models.Book>
+@{
+    var usdRate = ViewBag.UsdRate as decimal? ?? 0;
+}
+
+
+<h2>Lista książek</h2>
+<a href="/Books/Create">Dodaj książkę</a>
+
+<table>
+    <tr>
+        <th>Tytuł</th><th>Autor</th><th>Cena (PLN)</th><th>Cena (USD)</th><th>Data</th><th>Dostępna</th><th>Akcje</th>
+    </tr>
+@foreach (var book in Model)
+{
+    <tr>
+        <td>@book.Title</td>
+        <td>@book.Author</td>
+        <td>@book.Price</td>
+        <td>@Math.Round(book.Price / usdRate, 2)</td>
+        <td>@book.PublishDate.ToShortDateString()</td>
+        <td>@(book.Available ? "✓" : "✗")</td>
+        <td>
+            <a href="/Books/Edit/@book.Id">Edytuj</a> |
+            <a href="/Books/Delete/@book.Id">Usuń</a>
+        </td>
+    </tr>
+}
+</table>
