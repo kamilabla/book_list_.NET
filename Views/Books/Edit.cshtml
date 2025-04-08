@@ -1,0 +1,30 @@
+@model BookManager.Models.Book
+
+<h2>Edytuj książkę</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+
+    <div>
+        <label>Tytuł</label>
+        <input asp-for="Title" />
+    </div>
+    <div>
+        <label>Autor</label>
+        <input asp-for="Author" />
+    </div>
+    <div>
+        <label>Cena</label>
+        <input asp-for="Price" type="number" step="0.01" />
+    </div>
+    <div>
+        <label>Data publikacji</label>
+        <input asp-for="PublishDate" type="date" />
+    </div>
+    <div>
+        <label>Dostępna?</label>
+        <input asp-for="Available" type="checkbox" />
+    </div>
+
+    <button type="submit">Zapisz zmiany</button>
+</form>
