@@ -28,3 +28,9 @@ h2 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.page-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.15rem rgba(36, 73, 255, 0.75); /* np. żółty (Bootstrap warning) */
+  border-color: rgba(7, 94, 255, 0.75);
+}
