@@ -3,9 +3,11 @@ using BookManager.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using BookManager.Services;
+using X.PagedList;
+
 
 namespace BookManager.Controllers
-{
+{   
     public class BooksController : Controller
     {
         private readonly AppDbContext _context;
@@ -16,16 +18,25 @@ namespace BookManager.Controllers
             _context = context;
             _currencyService = currencyService;
         }
-
         
-        public async Task<IActionResult> Index(string sortOrder)
+        
+
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewData["TitleSortParm"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             ViewData["AuthorSortParm"] = sortOrder == "Author" ? "author_desc" : "Author";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
 
             var books = from b in _context.Books select b;
 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s => s.Author.Contains(searchString)
+                                    || s.Title.Contains(searchString));
+            }
+
+            // SORTOWANIE (jeśli masz)
             switch (sortOrder)
             {
                 case "title_desc":
@@ -48,11 +59,15 @@ namespace BookManager.Controllers
                     break;
             }
 
-            var rate = await _currencyService.GetUsdRateAsync();
-            ViewBag.UsdRate = rate?.Rates?[0].Mid ?? 0;
+                var rate = await _currencyService.GetUsdRateAsync();
+                ViewBag.UsdRate = rate?.Rates?[0].Mid ?? 0;
 
-            return View(await books.ToListAsync());
+                int pageSize = 5;
+                int pageNumber = page ?? 1;
+
+                return View(await books.ToListAsync());
         }
+
 
 
 
