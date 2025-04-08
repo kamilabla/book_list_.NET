@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using BookManager.Services;
 using X.PagedList;
+using X.PagedList.Extensions;
 
 
 namespace BookManager.Controllers
@@ -60,12 +61,22 @@ namespace BookManager.Controllers
             }
 
                 var rate = await _currencyService.GetUsdRateAsync();
-                ViewBag.UsdRate = rate?.Rates?[0].Mid ?? 0;
+                decimal usdRate = rate?.Rates?[0].Mid ?? 0;
 
                 int pageSize = 5;
-                int pageNumber = page ?? 1;
+                int pageNumber = page ?? 1; 
 
-                return View(await books.ToListAsync());
+
+                var pagedList = books.ToList().ToPagedList(pageNumber, pageSize);
+
+                var viewModel = new BooksViewModel
+                {
+                    Books = pagedList,
+                    UsdRate = usdRate
+                };
+
+
+                return View(viewModel);
         }
 
 

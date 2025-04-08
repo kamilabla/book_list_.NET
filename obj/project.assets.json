@@ -5125,6 +5125,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.3",
       "Microsoft.EntityFrameworkCore.Sqlite >= 9.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.3",
+      "X.PagedList >= 10.5.7",
       "X.PagedList.Mvc.Core >= 10.5.7"
     ]
   },
@@ -5183,6 +5184,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[9.0.3, )"
+          },
+          "X.PagedList": {
+            "target": "Package",
+            "version": "[10.5.7, )"
           },
           "X.PagedList.Mvc.Core": {
             "target": "Package",

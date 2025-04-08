@@ -1,4 +1,6 @@
-@model List<BookManager.Models.Book>
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@model BookManager.Models.BooksViewModel
 @{
     var usdRate = ViewBag.UsdRate as decimal? ?? 0;
 }
@@ -31,13 +33,13 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var book in Model)
+@foreach (var book in Model.Books)
 {
     <tr>
         <td>@book.Title</td>
         <td>@book.Author</td>
         <td>@book.Price</td>
-        <td>@Math.Round(book.Price / ViewBag.UsdRate, 2)</td>
+        <td>@Math.Round(book.Price / Model.UsdRate, 2)</td>
         <td>@book.PublishDate.ToShortDateString()</td>
         <td>@(book.Available ? "✓" : "✗")</td>
         <td>
@@ -48,5 +50,23 @@
 }
     </tbody>
 </table>
+
+<div class="d-flex justify-content-center mt-4">
+    @Html.PagedListPager(
+        Model.Books,
+        page => Url.Action("Index", new
+        {
+            page,
+            sortOrder = ViewContext.HttpContext.Request.Query["sortOrder"],
+            searchString = ViewContext.HttpContext.Request.Query["searchString"]
+        }),
+        new PagedListRenderOptions
+        {
+            UlElementClasses = new[] { "pagination" },
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" }
+        })
+</div>
+
 
 
