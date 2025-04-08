@@ -9,8 +9,21 @@
 
 <table>
     <tr>
-        <th>Tytuł</th><th>Autor</th><th>Cena (PLN)</th><th>Cena (USD)</th><th>Data</th><th>Dostępna</th><th>Akcje</th>
-    </tr>
+    <th>
+        <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">Tytuł</a>
+    </th>
+    <th>
+        <a asp-action="Index" asp-route-sortOrder="@ViewData["AuthorSortParm"]">Autor</a>
+    </th>
+    <th>Cena (PLN)</th>
+    <th>Cena (USD)</th>
+    <th>
+        <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">Data</a>
+    </th>
+    <th>Dostępna</th>
+    <th>Akcje</th>
+</tr>
+
 @foreach (var book in Model)
 {
     <tr>

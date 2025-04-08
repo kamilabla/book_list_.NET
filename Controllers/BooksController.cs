@@ -17,19 +17,43 @@ namespace BookManager.Controllers
             _currencyService = currencyService;
         }
 
-
-        // public async Task<IActionResult> Index()
-        // {
-        //     return View(await _context.Books.ToListAsync());
-        // }
-
-        public async Task<IActionResult> Index()
+        
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var books = await _context.Books.ToListAsync();
+            ViewData["TitleSortParm"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewData["AuthorSortParm"] = sortOrder == "Author" ? "author_desc" : "Author";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            var books = from b in _context.Books select b;
+
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    books = books.OrderByDescending(b => b.Title);
+                    break;
+                case "Author":
+                    books = books.OrderBy(b => b.Author);
+                    break;
+                case "author_desc":
+                    books = books.OrderByDescending(b => b.Author);
+                    break;
+                case "Date":
+                    books = books.OrderBy(b => b.PublishDate);
+                    break;
+                case "date_desc":
+                    books = books.OrderByDescending(b => b.PublishDate);
+                    break;
+                default:
+                    books = books.OrderBy(b => b.Title);
+                    break;
+            }
+
             var rate = await _currencyService.GetUsdRateAsync();
             ViewBag.UsdRate = rate?.Rates?[0].Mid ?? 0;
-            return View(books);
+
+            return View(await books.ToListAsync());
         }
+
 
 
         public IActionResult Create() => View();
