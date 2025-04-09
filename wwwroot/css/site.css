@@ -21,6 +21,11 @@ body {
   font-family: 'Poppins', sans-serif;
   margin-bottom: 60px;
   background-color: #f8f9fa;
+
+  background-image: url('https://images.unsplash.com/photo-1550399105-c4db5fb85c18?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 
@@ -33,4 +38,38 @@ h2 {
   outline: none;
   box-shadow: 0 0 0 0.15rem rgba(36, 73, 255, 0.75); /* np. żółty (Bootstrap warning) */
   border-color: rgba(7, 94, 255, 0.75);
+}
+
+
+
+
+
+.btn-edit {
+  background-color: #af03ff; /* jasnoniebieski */
+  color: black;
+  border: none;
+}
+
+.btn-delete {
+  background-color: #f700ff; /* czerwony */
+  color: white;
+  border: none;
+}
+
+.btn-edit:hover {
+  background-color: #6a11a2;
+}
+
+.btn-delete:hover {
+  background-color: #92108b;
+}
+
+
+.glass-box {
+  background-color: rgba(255, 255, 255, 0.85); /* białe tło z przezroczystością */
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px); /* opcjonalnie: rozmycie tła */
+  -webkit-backdrop-filter: blur(4px);
 }

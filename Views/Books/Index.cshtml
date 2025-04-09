@@ -19,41 +19,43 @@
         </p>
     </div>
 </form>
-
-<table class="table table-bordered table-striped table-hover">
-    <thead class="table-dark">
+<div class="glass-box">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">Tytuł</a></th>
+                <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["AuthorSortParm"]">Autor</a></th>
+                <th>Cena (PLN)</th>
+                <th>Cena (USD)</th>
+                <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">Data</a></th>
+                <th>Dostępna</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var book in Model.Books)
+    {
         <tr>
-            <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">Tytuł</a></th>
-            <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["AuthorSortParm"]">Autor</a></th>
-            <th>Cena (PLN)</th>
-            <th>Cena (USD)</th>
-            <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">Data</a></th>
-            <th>Dostępna</th>
-            <th>Akcje</th>
+            <td>@book.Title</td>
+            <td>@book.Author</td>
+            <td>@book.Price</td>
+            <td>@Math.Round(book.Price / Model.UsdRate, 2)</td>
+            <td>@book.PublishDate.ToShortDateString()</td>
+            <td>@(book.Available ? "✓" : "✗")</td>
+            <td>
+                <a href="/Books/Edit/@book.Id" class="btn btn-sm btn-edit">
+                    <i class="bi bi-pencil-fill"></i> Edytuj
+                </a>
+                <a href="/Books/Delete/@book.Id" class="btn btn-sm btn-delete">
+                    <i class="bi bi-trash-fill"></i> Usuń
+                </a>
+            </td>
         </tr>
-    </thead>
-    <tbody>
-@foreach (var book in Model.Books)
-{
-    <tr>
-        <td>@book.Title</td>
-        <td>@book.Author</td>
-        <td>@book.Price</td>
-        <td>@Math.Round(book.Price / Model.UsdRate, 2)</td>
-        <td>@book.PublishDate.ToShortDateString()</td>
-        <td>@(book.Available ? "✓" : "✗")</td>
-        <td>
-            <a href="/Books/Edit/@book.Id" class="btn btn-sm btn-edit">
-                <i class="bi bi-pencil-fill"></i> Edytuj
-            </a>
-            <a href="/Books/Delete/@book.Id" class="btn btn-sm btn-delete">
-                <i class="bi bi-trash-fill"></i> Usuń
-            </a>
-        </td>
-    </tr>
-}
-    </tbody>
-</table>
+    }
+        </tbody>
+    </table>
+
+</div>
 
 <div class="d-flex justify-content-center mt-4">
     @Html.PagedListPager(
