@@ -18,6 +18,19 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 })
 .AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.SlidingExpiration = false;
+    options.Cookie.IsEssential = true;
+    options.Cookie.HttpOnly = true;
+    options.LoginPath = "/Identity/Account/Login";
+    options.LogoutPath = "/Identity/Account/Logout";
+
+    options.Cookie.MaxAge = null; // ← sesja tylko do zamknięcia przeglądarki
+    options.SlidingExpiration = false;
+});
+
+
 builder.Services.AddRazorPages(); // wymagane do obsługi Areas
 
 builder.Services.AddHttpClient<CurrencyService>();
