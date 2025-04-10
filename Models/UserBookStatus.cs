@@ -1,6 +1,8 @@
 using BookManager.Models;
 using Microsoft.AspNetCore.Identity;
 
+namespace BookManager.Models;
+
 public class UserBookStatus
 {
     public int Id { get; set; }

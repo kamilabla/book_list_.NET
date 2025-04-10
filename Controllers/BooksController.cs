@@ -72,6 +72,19 @@ namespace BookManager.Controllers
                     .Where(s => s.UserId == userId)
                     .ToList();
 
+                var allBooks = await _context.Books.ToListAsync();
+           
+
+                // Książki przeczytane i do przeczytania (pełne listy, nie stronicowane!)
+                var readBooks = allBooks.Where(b => statuses.Any(s => s.BookId == b.Id && s.IsRead)).ToList();
+                var wantBooks = allBooks.Where(b => statuses.Any(s => s.BookId == b.Id && s.WantToRead)).ToList();
+
+                ViewBag.ReadBooks = readBooks;
+                ViewBag.WantBooks = wantBooks;
+                ViewBag.Statuses = statuses;
+                ViewBag.UsdRate = rate?.Rates?[0].Mid ?? 1;
+
+
                 
                 int pageSize = 5;
                 int pageNumber = page ?? 1; 
@@ -85,6 +98,8 @@ namespace BookManager.Controllers
                     UsdRate = usdRate,
                     Statuses = statuses
                 };
+
+            
 
 
                 return View(viewModel);

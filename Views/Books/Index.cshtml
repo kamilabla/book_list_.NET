@@ -6,7 +6,7 @@
 }
 
 
-<h2>List of books</h2>
+<h2 class="text-white">List of books</h2>
 <div class="glass-box">
     <a href="/Books/Create" class="btn btn-primary mb-3">Add a book</a>
 
@@ -19,6 +19,44 @@
             </p>
         </div>
     </form>
+        
+
+
+
+    <div class="accordion mb-4" id="booksAccordion">
+        <!-- Przeczytane -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingRead">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRead" aria-expanded="true" aria-controls="collapseRead">
+                    ✓ Books I've already read 
+                </button>
+            </h2>
+            <div id="collapseRead" class="accordion-collapse collapse show" aria-labelledby="headingRead" data-bs-parent="#booksAccordion">
+                <div class="accordion-body">
+                    @Html.Partial("_BookTable", (List<BookManager.Models.Book>)ViewBag.ReadBooks)
+                </div>
+            </div>
+        </div>
+
+        <!-- Do przeczytania -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingWant">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWant" aria-expanded="false" aria-controls="collapseWant">
+                    <i class="bi bi-pin-angle"> </i>My bookshelf
+                </button>
+            </h2>
+            <div id="collapseWant" class="accordion-collapse collapse" aria-labelledby="headingWant" data-bs-parent="#booksAccordion">
+                <div class="accordion-body">
+                    @Html.Partial("_BookTable", (List<BookManager.Models.Book>)ViewBag.WantBooks)
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
 
     <table class="table table-bordered table-striped table-hover">
         <thead class="table-dark">
@@ -65,7 +103,7 @@
                         <input type="hidden" name="bookId" value="@book.Id" />
                         <input type="hidden" name="actionType" value="want" />
                         <button type="submit" class="btn btn-sm @(wantToRead ? "btn-info text-white" : "btn-outline-info")">
-                            ✓ On the bookshelf
+                            <i class="bi bi-pin-angle"></i> On the bookshelf
                         </button>
                     </form>
                 </div>

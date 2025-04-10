@@ -1,0 +1,68 @@
+@model IEnumerable<BookManager.Models.Book>
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var userId = HttpContextAccessor.HttpContext.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+    var allStatuses = ViewBag.Statuses as List<BookManager.Models.UserBookStatus>;
+    var usdRate = ViewBag.UsdRate as decimal? ?? 1;
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price (PLN)</th>
+            <th>Price (USD)</th>
+            <th>Date</th>
+            <th>Availability</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var book in Model)
+    {
+        var status = allStatuses?.FirstOrDefault(s => s.BookId == book.Id && s.UserId == userId);
+        bool isRead = status?.IsRead == true;
+        bool wantToRead = status?.WantToRead == true;
+
+        <tr>
+            <td>@book.Title</td>
+            <td>@book.Author</td>
+            <td>@book.Price</td>
+            <td>@Math.Round(book.Price / usdRate, 2)</td>
+            <td>@book.PublishDate.ToShortDateString()</td>
+            <td>@(book.Available ? "✓" : "✗")</td>
+            <td>
+                @if (isRead)
+                {
+                    <span class="text-success">✓ Already read</span>
+                }
+                else if (wantToRead)
+                {
+                    <span class="text-info"><i class="bi bi-pin-angle"></i>  On the bookshelf</span>
+                }
+            </td>
+            <td>
+                <!-- przeczytana -->
+                <form asp-action="SetStatus" method="post" class="d-inline">
+                    <input type="hidden" name="bookId" value="@book.Id" />
+                    <input type="hidden" name="actionType" value="read" />
+                    <button type="submit" class="btn btn-sm @(isRead ? "btn-success" : "btn-outline-success") me-1">
+                        ✓
+                    </button>
+                </form>
+
+                <!-- chcę przeczytać -->
+                <form asp-action="SetStatus" method="post" class="d-inline">
+                    <input type="hidden" name="bookId" value="@book.Id" />
+                    <input type="hidden" name="actionType" value="want" />
+                    <button type="submit" class="btn btn-sm @(wantToRead ? "btn-info text-white" : "btn-outline-info")">
+                        <i class="bi bi-pin-angle"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
