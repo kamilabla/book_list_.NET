@@ -43,10 +43,10 @@
             <td>@book.PublishDate.ToShortDateString()</td>
             <td>@(book.Available ? "✓" : "✗")</td>
             <td>
-                <a href="/Books/Edit/@book.Id" class="btn btn-sm btn-edit">
+                <a href="/Books/Edit/@book.Id" class="btn-transparent">
                     <i class="bi bi-pencil-fill"></i> Edytuj
                 </a>
-                <a href="/Books/Delete/@book.Id" class="btn btn-sm btn-delete">
+                <a href="/Books/Delete/@book.Id" class="btn-transparent">
                     <i class="bi bi-trash-fill"></i> Usuń
                 </a>
             </td>
