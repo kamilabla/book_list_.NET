@@ -6,16 +6,16 @@
 }
 
 
-<h2>Lista książek</h2>
+<h2>List of books</h2>
 <div class="glass-box">
-    <a href="/Books/Create" class="btn btn-primary mb-3">Dodaj książkę</a>
+    <a href="/Books/Create" class="btn btn-primary mb-3">Add a book</a>
 
     <form asp-action="Index" method="get">
         <div class="form-actions no-color">
             <p>
-                <label>Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" /></label>
+                <label>Filter: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" /></label>
                 <input type="submit" value="Search" class="btn btn-default" /> |
-                <a asp-action="Index">Back to Full List</a>
+                <a asp-action="Index">Back to the list</a>
             </p>
         </div>
     </form>
@@ -23,14 +23,14 @@
     <table class="table table-bordered table-striped table-hover">
         <thead class="table-dark">
             <tr>
-                <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">Tytuł</a></th>
-                <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["AuthorSortParm"]">Autor</a></th>
-                <th>Cena (PLN)</th>
-                <th>Cena (USD)</th>
-                <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">Data</a></th>
-                <th>Dostępna</th>
+                <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">Title</a></th>
+                <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["AuthorSortParm"]">Author</a></th>
+                <th>Price (PLN)</th>
+                <th>Price (USD)</th>
+                <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">Date</a></th>
+                <th>Availability</th>
                 <th>Status</th>
-                <th>Akcje</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -50,32 +50,34 @@
                     bool wantToRead = status?.WantToRead == true;
                 }
 
-                <!-- Przeczytana -->
-                <form asp-action="SetStatus" method="post" class="d-inline">
-                    <input type="hidden" name="bookId" value="@book.Id" />
-                    <input type="hidden" name="actionType" value="read" />
-                    <button type="submit" class="btn btn-sm @(isRead ? "btn-success" : "btn-outline-success")">
-                        ✅ Przeczytana
-                    </button>
-                </form>
+                <div class="d-flex gap-2">
+                    <!-- Przeczytana -->
+                    <form asp-action="SetStatus" method="post" class="d-inline">
+                        <input type="hidden" name="bookId" value="@book.Id" />
+                        <input type="hidden" name="actionType" value="read" />
+                        <button type="submit" class="btn btn-sm @(isRead ? "btn-success" : "btn-outline-success")">
+                            ✓ Already read
+                        </button>
+                    </form>
 
-                <!-- Chcę przeczytać -->
-                <form asp-action="SetStatus" method="post" class="d-inline ms-2">
-                    <input type="hidden" name="bookId" value="@book.Id" />
-                    <input type="hidden" name="actionType" value="want" />
-                    <button type="submit" class="btn btn-sm @(wantToRead ? "btn-info text-white" : "btn-outline-info")">
-                        📌 Chcę przeczytać
-                    </button>
-                </form>
+                    <!-- Chcę przeczytać -->
+                    <form asp-action="SetStatus" method="post" class="d-inline ms-2">
+                        <input type="hidden" name="bookId" value="@book.Id" />
+                        <input type="hidden" name="actionType" value="want" />
+                        <button type="submit" class="btn btn-sm @(wantToRead ? "btn-info text-white" : "btn-outline-info")">
+                            ✓ On the bookshelf
+                        </button>
+                    </form>
+                </div>
             </td>
 
 
             <td>
                 <a href="/Books/Edit/@book.Id" class="btn-transparent">
-                    <i class="bi bi-pencil-fill"></i> Edytuj
+                    <i class="bi bi-pencil-fill"></i> Edit
                 </a>
                 <a href="/Books/Delete/@book.Id" class="btn-transparent">
-                    <i class="bi bi-trash-fill"></i> Usuń
+                    <i class="bi bi-trash-fill"></i> Delete
                 </a>
             </td>
         </tr>
