@@ -101,3 +101,17 @@ h2 {
   padding: 1rem 0;
 }
 
+
+header.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #000;
+  text-align: center;
+  z-index: 1000;
+  /* border-top: 1px solid rgba(0, 0, 0, 0.1); */
+}
+
