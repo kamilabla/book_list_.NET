@@ -91,3 +91,13 @@ h2 {
   color: #dc3545; /* np. czerwony po najechaniu */
   cursor: pointer;
 }
+
+.glass-footer {
+  background-color: rgba(255, 255, 255, 0.75); /* lub rgba(0,0,0,0.5) dla ciemniejszego */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #000; /* lub white, jeśli tło ciemne */
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding: 1rem 0;
+}
+
