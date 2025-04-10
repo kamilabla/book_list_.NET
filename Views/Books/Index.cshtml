@@ -31,7 +31,7 @@
                     ✓ Books I've already read 
                 </button>
             </h2>
-            <div id="collapseRead" class="accordion-collapse collapse show" aria-labelledby="headingRead" data-bs-parent="#booksAccordion">
+            <div id="collapseRead" class="accordion-collapse collapse" aria-labelledby="headingRead" data-bs-parent="#booksAccordion">
                 <div class="accordion-body">
                     @Html.Partial("_BookTable", (List<BookManager.Models.Book>)ViewBag.ReadBooks)
                 </div>
