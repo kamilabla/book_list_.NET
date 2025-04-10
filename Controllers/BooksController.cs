@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using BookManager.Services;
 using X.PagedList;
 using X.PagedList.Extensions;
-
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace BookManager.Controllers
 {   
+    [Authorize]
     public class BooksController : Controller
     {
         private readonly AppDbContext _context;
@@ -63,6 +65,14 @@ namespace BookManager.Controllers
                 var rate = await _currencyService.GetUsdRateAsync();
                 decimal usdRate = rate?.Rates?[0].Mid ?? 0;
 
+
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                var statuses = _context.UserBookStatuses
+                    .Where(s => s.UserId == userId)
+                    .ToList();
+
+                
                 int pageSize = 5;
                 int pageNumber = page ?? 1; 
 
@@ -72,7 +82,8 @@ namespace BookManager.Controllers
                 var viewModel = new BooksViewModel
                 {
                     Books = pagedList,
-                    UsdRate = usdRate
+                    UsdRate = usdRate,
+                    Statuses = statuses
                 };
 
 
@@ -120,5 +131,44 @@ namespace BookManager.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult SetStatus(int bookId, string actionType)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var status = _context.UserBookStatuses
+                .FirstOrDefault(s => s.BookId == bookId && s.UserId == userId);
+
+            if (status == null)
+            {
+                status = new UserBookStatus
+                {
+                    UserId = userId,
+                    BookId = bookId
+                };
+                _context.UserBookStatuses.Add(status);
+            }
+
+            // Toggle logic
+            if (actionType == "read")
+            {
+                status.IsRead = !status.IsRead;
+                if (status.IsRead)
+                    status.WantToRead = false; // tylko jedno może być aktywne
+            }
+            else if (actionType == "want")
+            {
+                status.WantToRead = !status.WantToRead;
+                if (status.WantToRead)
+                    status.IsRead = false;
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

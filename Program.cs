@@ -1,5 +1,6 @@
 using BookManager.Models; // zakładam, że Twoja klasa kontekstu jest w tym namespace
 using BookManager.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -9,6 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+})
+.AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddRazorPages(); // wymagane do obsługi Areas
 
 builder.Services.AddHttpClient<CurrencyService>();
 var app = builder.Build();
@@ -25,7 +35,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.MapRazorPages(); // na końcu konfiguracji routingu
 
+app.UseAuthentication(); // dodaj PRZED app.UseAuthorization()
 app.UseAuthorization();
 
 app.MapControllerRoute(

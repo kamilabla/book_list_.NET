@@ -29,6 +29,7 @@
                 <th>Cena (USD)</th>
                 <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">Data</a></th>
                 <th>Dostępna</th>
+                <th>Status</th>
                 <th>Akcje</th>
             </tr>
         </thead>
@@ -42,6 +43,33 @@
             <td>@Math.Round(book.Price / Model.UsdRate, 2)</td>
             <td>@book.PublishDate.ToShortDateString()</td>
             <td>@(book.Available ? "✓" : "✗")</td>
+            <td>
+                @{
+                    var status = Model.Statuses.FirstOrDefault(s => s.BookId == book.Id);
+                    bool isRead = status?.IsRead == true;
+                    bool wantToRead = status?.WantToRead == true;
+                }
+
+                <!-- Przeczytana -->
+                <form asp-action="SetStatus" method="post" class="d-inline">
+                    <input type="hidden" name="bookId" value="@book.Id" />
+                    <input type="hidden" name="actionType" value="read" />
+                    <button type="submit" class="btn btn-sm @(isRead ? "btn-success" : "btn-outline-success")">
+                        ✅ Przeczytana
+                    </button>
+                </form>
+
+                <!-- Chcę przeczytać -->
+                <form asp-action="SetStatus" method="post" class="d-inline ms-2">
+                    <input type="hidden" name="bookId" value="@book.Id" />
+                    <input type="hidden" name="actionType" value="want" />
+                    <button type="submit" class="btn btn-sm @(wantToRead ? "btn-info text-white" : "btn-outline-info")">
+                        📌 Chcę przeczytać
+                    </button>
+                </form>
+            </td>
+
+
             <td>
                 <a href="/Books/Edit/@book.Id" class="btn-transparent">
                     <i class="bi bi-pencil-fill"></i> Edytuj

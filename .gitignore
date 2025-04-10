@@ -1,0 +1,10 @@
+bin/
+obj/
+*.user
+*.suo
+*.pdb
+*.dll
+*.log
+*.db
+*.codegeneration.targets
+*.sourcelink.json

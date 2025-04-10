@@ -6,5 +6,6 @@ namespace BookManager.Models
     {
         public IPagedList<Book> Books { get; set; }
         public decimal UsdRate { get; set; }
+        public List<UserBookStatus> Statuses { get; set; }
     }
 }

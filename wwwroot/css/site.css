@@ -73,3 +73,19 @@ h2 {
   backdrop-filter: blur(4px); /* opcjonalnie: rozmycie tła */
   -webkit-backdrop-filter: blur(4px);
 }
+
+
+.btn-transparent {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.btn-transparent:hover {
+  color: #dc3545; /* np. czerwony po najechaniu */
+  cursor: pointer;
+}
