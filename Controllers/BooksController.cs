@@ -35,8 +35,8 @@ namespace BookManager.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                books = books.Where(s => s.Author.ToLower().Contains(searchString)
-                                    || s.Title.ToLower().Contains(searchString));
+                books = books.Where(s => s.Author.ToLower().Contains(searchString.ToLower())
+                                    || s.Title.ToLower().Contains(searchString.ToLower()));
             }
 
             // SORTOWANIE (jeśli masz)

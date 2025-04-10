@@ -68,6 +68,7 @@ h2 {
 
 
 .glass-box {
+  margin-top: 40px;
   background-color: rgba(255, 255, 255, 0.85); /* białe tło z przezroczystością */
   padding: 30px;
   border-radius: 16px;
