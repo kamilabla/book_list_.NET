@@ -69,14 +69,17 @@ Then open the app in your browser at https://localhost:XXXX
 
 - **Forgotten password**
    If the user has forgotten their password there is a possibility of resetting their password.
-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   - **After logging or registration**
    After logging in users receive access to the book list and can use the search bar to find books by title or author (search is case-insensitive) or sort books by title, author or publish date. Prices are displayed in both PLN and USD - the app fetches live currency data from the NBP API.
+![image](https://github.com/user-attachments/assets/d652f3ab-19d2-47a3-b4be-cde1a4b1857f)
+![image](https://github.com/user-attachments/assets/7b46ec64-9ae2-4c88-907f-f70fa4bd1eda)
 
 
 - **Add new books**
   They can add new books with title, author, price, date, and availability.
+![image](https://github.com/user-attachments/assets/e7ae7c80-1e27-4fd4-a193-23c2010ce184)
 
 
 - **Edit or delete books**
