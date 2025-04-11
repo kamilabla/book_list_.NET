@@ -56,7 +56,7 @@ dotnet restore
 dotnet ef database update
 dotnet run
 ```
-Then open the app in your browser at https://localhost:XXXX 
+Then open the app in your browser at https://localhost:5018
 
 
 ## Views
