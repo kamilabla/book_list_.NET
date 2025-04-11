@@ -56,7 +56,7 @@ Then open the app in your browser at https://localhost:XXXX
 ## Views
 
 - **Main view**  <br/>
-    As a new user you're greeted with a **`Welcome`** view, where you can go to either **`Books`** or a **`Privacy`** sub-website. <br/>
+    As a new user you're greeted with a **`Welcome`** view, where you can go to either **`Home`** or a **`Books`** sub-website. <br/>
 ![image](https://github.com/user-attachments/assets/51eebce3-bec1-4676-a2df-95e9aab4b303)
 
 
