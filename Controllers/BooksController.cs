@@ -26,6 +26,31 @@ namespace BookManager.Controllers
 
         public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+
+            var result = await _currencyService.GetUsdRateAsync(); // API: CurrencyRate
+            var rate = result?.Rates?.FirstOrDefault();
+
+            if (rate != null)
+            {
+                bool alreadyExists = await _context.CurrencyRates.AnyAsync(r =>
+                    r.RateNo == rate.No && r.Code == result.Code);
+
+                if (!alreadyExists)
+                {
+                    var entity = new CurrencyRateEntity
+                    {
+                        Code = result.Code,
+                        Currency = result.Currency,
+                        RateNo = rate.No,
+                        EffectiveDate = rate.EffectiveDate,
+                        Mid = rate.Mid
+                    };
+
+                    _context.CurrencyRates.Add(entity);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
             ViewData["TitleSortParm"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             ViewData["AuthorSortParm"] = sortOrder == "Author" ? "author_desc" : "Author";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
@@ -39,7 +64,6 @@ namespace BookManager.Controllers
                                     || s.Title.ToLower().Contains(searchString.ToLower()));
             }
 
-            // SORTOWANIE (jeśli masz)
             switch (sortOrder)
             {
                 case "title_desc":
@@ -62,8 +86,7 @@ namespace BookManager.Controllers
                     break;
             }
 
-                var rate = await _currencyService.GetUsdRateAsync();
-                decimal usdRate = rate?.Rates?[0].Mid ?? 0;
+                decimal usdRate = result?.Rates?[0].Mid ?? 0;
 
 
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -75,14 +98,14 @@ namespace BookManager.Controllers
                 var allBooks = await _context.Books.ToListAsync();
            
 
-                // Książki przeczytane i do przeczytania (pełne listy, nie stronicowane!)
+                // Książki przeczytane i do przeczytania (pełne listy)
                 var readBooks = allBooks.Where(b => statuses.Any(s => s.BookId == b.Id && s.IsRead)).ToList();
                 var wantBooks = allBooks.Where(b => statuses.Any(s => s.BookId == b.Id && s.WantToRead)).ToList();
 
                 ViewBag.ReadBooks = readBooks;
                 ViewBag.WantBooks = wantBooks;
                 ViewBag.Statuses = statuses;
-                ViewBag.UsdRate = rate?.Rates?[0].Mid ?? 1;
+                ViewBag.UsdRate = result?.Rates?[0].Mid ?? 1;
 
 
                 
