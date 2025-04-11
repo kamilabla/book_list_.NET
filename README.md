@@ -52,12 +52,12 @@ Then open the app in your browser at https://localhost:XXXX
 ## Views
 
 - **Main view**  <br/>
-    As a new user you're greeted with a 'Welcome' view, where you can go to either **`Books`** or a **`Privacy`** sub-website. <br/>
+    As a new user you're greeted with a **`Welcome`** view, where you can go to either **`Books`** or a **`Privacy`** sub-website. <br/>
 ![image](https://github.com/user-attachments/assets/51eebce3-bec1-4676-a2df-95e9aab4b303)
 
 
 - **User Login** <br/>
-    Users with accounts can login by typing providing their email and password. By checking **`Remember me`** checkbox they allow the website to remember their data while logging. <br/>
+    Users with accounts can login by typing their email and password in the type-boxes. By checking **`Remember me`** checkbox they allow the website to remember their data while logging. <br/>
 <img width="941" alt="image" src="https://github.com/user-attachments/assets/ec54e25f-c2fb-407f-a5fd-8126442cc629" />
 
 
@@ -67,7 +67,7 @@ Then open the app in your browser at https://localhost:XXXX
 
 
   - **After logging or registering** <br/>
-    After logging in users receive access to the book list and can use the search bar to find books by title or author (search is case-insensitive) or sort books by title, author or publish date (by clicking either **`Title`**, **`Author`** or **`Date`**). Prices are displayed in both PLN and USD - the app fetches live currency data from the NBP API. <br/>
+    After logging in users receive access to the book list and can use the search bar to find books by title or author by typing a phrase and clicking **`Search`** (search is case-insensitive) or sort books by title, author or publish date by clicking either **`Title`**, **`Author`** or **`Date`**. Prices are displayed in both PLN and USD - the app fetches live currency data from the NBP API. <br/>
 ![image](https://github.com/user-attachments/assets/d652f3ab-19d2-47a3-b4be-cde1a4b1857f)
 
 ![image](https://github.com/user-attachments/assets/7b46ec64-9ae2-4c88-907f-f70fa4bd1eda)
@@ -100,12 +100,5 @@ Then open the app in your browser at https://localhost:XXXX
 
 
   
-
-
-
-
-
-
-
 
 
