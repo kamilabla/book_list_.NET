@@ -45,10 +45,11 @@
 
 ### Installation
 
+In git bash or a similar tool:
 ```bash
 git clone https://github.com/kamilabla/book_list_.NET.git
 ```
-in project terminal:
+In project terminal:
 ```
 cd book_list_.NET
 dotnet restore
