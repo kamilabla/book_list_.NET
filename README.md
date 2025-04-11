@@ -84,15 +84,20 @@ Then open the app in your browser at https://localhost:XXXX
 
 - **Edit or delete books**
   Edit or delete existing books. Each book is stored in the central database, visible in a shared list.
+![image](https://github.com/user-attachments/assets/31e78441-c73d-4ac4-9694-0f7a1c318b9e)
+![image](https://github.com/user-attachments/assets/c6d50948-bb3e-4664-8cac-65cbbc1bde52)
 
 
 - **Change status of a book**
   For each book, users can choose "Already read" or "On the bookshelf" if they plan to read this book in the future.
   These statuses are: saved per user, visible only to the logged-in user, easily changed with a single click.
+![image](https://github.com/user-attachments/assets/9a4a82de-1db5-4672-a52d-bb0b418821e1)
 
 
 - **Accordion filter**
   Filter books with an accordion interface: show only read books or show only to-read books. Users can change the status of those books in accordion.
+![image](https://github.com/user-attachments/assets/781cd251-780f-4dc6-b73a-faae557a4b3f)
+![image](https://github.com/user-attachments/assets/97c0beef-8de1-4c82-adc0-293e327269f3)
 
 
   
