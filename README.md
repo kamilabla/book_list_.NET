@@ -66,7 +66,8 @@ Then open the app in your browser at https://localhost:XXXX
 ![image](https://github.com/user-attachments/assets/f7246906-26ad-4ed2-8ecc-ac5f7f91c076)
 
 
-  - **After logging or registering**    After logging in users receive access to the book list and can use the search bar to find books by title or author (search is case-insensitive) or sort books by title, author or publish date (by clicking either **`Title`**, **`Author`** or **`Date`**). Prices are displayed in both PLN and USD - the app fetches live currency data from the NBP API.
+  - **After logging or registering**
+    After logging in users receive access to the book list and can use the search bar to find books by title or author (search is case-insensitive) or sort books by title, author or publish date (by clicking either **`Title`**, **`Author`** or **`Date`**). Prices are displayed in both PLN and USD - the app fetches live currency data from the NBP API.
 ![image](https://github.com/user-attachments/assets/d652f3ab-19d2-47a3-b4be-cde1a4b1857f)
 ![image](https://github.com/user-attachments/assets/7b46ec64-9ae2-4c88-907f-f70fa4bd1eda)
 
