@@ -47,6 +47,9 @@
 
 ```bash
 git clone https://github.com/kamilabla/book_list_.NET.git
+```
+in project terminal:
+```
 cd book_list_.NET
 dotnet restore
 dotnet ef database update
