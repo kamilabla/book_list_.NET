@@ -46,7 +46,7 @@
 ### Installation
 
 ```bash
-git clone https://github.com/kamilabla/book_list_.NEt.git
+git clone https://github.com/kamilabla/book_list_.NET.git
 cd BookManager
 dotnet restore
 dotnet ef database update
