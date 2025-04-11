@@ -10,7 +10,7 @@
 - Search books by title or author (case-insensitive)
 - Sort books by title, author or publish date
 - Pagination using `X.PagedList`
-- Fetches real-time USD exchange rate from NBP API
+- Fetches real-time USD exchange rate from NBP API and saves it after every login.
 - SQLite as the database
 - Accordion-based filtering of books by status (already read / to-read)
 
