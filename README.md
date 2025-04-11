@@ -41,11 +41,12 @@
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download)
 - Optional: [DB Browser for SQLite](https://sqlitebrowser.org/)
+- Optional: [Visual Studio Code](https://code.visualstudio.com/)
 
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/BookManager.git
+git clone https://github.com/kamilabla/BookManager.git
 cd BookManager
 dotnet restore
 dotnet ef database update
