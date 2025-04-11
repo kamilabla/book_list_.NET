@@ -64,6 +64,7 @@ Then open the app in your browser at https://localhost:XXXX
 
 - **User Registration**
     New users have the ability to make an account by providing their email, password and confirmation of the password.
+![image](https://github.com/user-attachments/assets/f7246906-26ad-4ed2-8ecc-ac5f7f91c076)
 
 
 - **Forgotten password**
