@@ -59,7 +59,6 @@ Then open the app in your browser at https://localhost:XXXX
 - **User Login**
     Users with accounts can login by typing providing their email and password. By checking 'Remember me' checkbox they allow the website to remember their data while logging.
 <img width="941" alt="image" src="https://github.com/user-attachments/assets/ec54e25f-c2fb-407f-a5fd-8126442cc629" />
-![image](https://github.com/user-attachments/assets/c875096e-a192-4dc0-baf7-658638761670)
 
 
 - **User Registration**
