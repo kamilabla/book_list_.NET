@@ -117,3 +117,8 @@ header.fixed-header {
 }
 
 
+.pt-6 {
+  padding-top: 4rem; /* lub dowolna wartość */
+}
+
+

@@ -8,17 +8,19 @@
 
 <h2 class="text-white">List of books</h2>
 <div class="glass-box">
-    <a href="/Books/Create" class="btn btn-primary mb-3">Add a book</a>
+    <div class="d-flex align-items-center flex-wrap gap-2 mb-3">
+        <a href="/Books/Create" class="btn btn-primary mb-3">Add a book</a>
 
-    <form asp-action="Index" method="get">
-        <div class="form-actions no-color">
-            <p>
-                <label>Filter: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" /></label>
-                <input type="submit" value="Search" class="btn btn-default" /> |
-                <a asp-action="Index">Back to the list</a>
-            </p>
-        </div>
-    </form>
+        <form asp-action="Index" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    <label>Filter: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" /></label>
+                    <input type="submit" value="Search" class="btn btn-default" /> |
+                    <a asp-action="Index">Back to the list</a>
+                </p>
+            </div>
+        </form>
+    </div>
         
 
 
@@ -28,11 +30,11 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingRead">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRead" aria-expanded="true" aria-controls="collapseRead">
-                    ✓ Books I've already read 
+                    <i class="bi bi-book me-2"></i>Books I've already read 
                 </button>
             </h2>
             <div id="collapseRead" class="accordion-collapse collapse" aria-labelledby="headingRead" data-bs-parent="#booksAccordion">
-                <div class="accordion-body">
+                <div class="accordion-body text-center">
                     @Html.Partial("_BookTable", (List<BookManager.Models.Book>)ViewBag.ReadBooks)
                 </div>
             </div>
@@ -42,11 +44,11 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingWant">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWant" aria-expanded="false" aria-controls="collapseWant">
-                    <i class="bi bi-pin-angle"> </i>My bookshelf
+                    <i class="bi bi-pin-angle me-2"> </i>My bookshelf
                 </button>
             </h2>
             <div id="collapseWant" class="accordion-collapse collapse" aria-labelledby="headingWant" data-bs-parent="#booksAccordion">
-                <div class="accordion-body">
+                <div class="accordion-body text-center">
                     @Html.Partial("_BookTable", (List<BookManager.Models.Book>)ViewBag.WantBooks)
                 </div>
             </div>
@@ -58,8 +60,8 @@
 
 
 
-    <table class="table table-bordered table-striped table-hover">
-        <thead class="table-dark">
+    <table class="table table-bordered table-striped table-hover text-center">
+        <thead class="table-dark align-middle">
             <tr>
                 <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">Title</a></th>
                 <th><a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["AuthorSortParm"]">Author</a></th>
@@ -71,7 +73,7 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="align-middle">
     @foreach (var book in Model.Books)
     {
         <tr>
@@ -94,7 +96,7 @@
                         <input type="hidden" name="bookId" value="@book.Id" />
                         <input type="hidden" name="actionType" value="read" />
                         <button type="submit" class="btn btn-sm @(isRead ? "btn-success" : "btn-outline-success")">
-                            ✓ Already read
+                            <i class="bi bi-book"></i> Already read
                         </button>
                     </form>
 
