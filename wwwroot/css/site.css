@@ -38,7 +38,7 @@ h2 {
 
 .page-link:focus {
   outline: none;
-  box-shadow: 0 0 0 0.15rem rgba(36, 73, 255, 0.75); /* np. żółty (Bootstrap warning) */
+  box-shadow: 0 0 0 0.15rem rgba(36, 73, 255, 0.75);
   border-color: rgba(7, 94, 255, 0.75);
 }
 
@@ -47,13 +47,13 @@ h2 {
 
 
 .btn-edit {
-  background-color: #af03ff; /* jasnoniebieski */
+  background-color: #af03ff; 
   color: black;
   border: none;
 }
 
 .btn-delete {
-  background-color: #f700ff; /* czerwony */
+  background-color: #f700ff; 
   color: white;
   border: none;
 }
@@ -69,11 +69,11 @@ h2 {
 
 .glass-box {
   margin-top: 40px;
-  background-color: rgba(255, 255, 255, 0.85); /* białe tło z przezroczystością */
+  background-color: rgba(255, 255, 255, 0.85); 
   padding: 30px;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(4px); /* opcjonalnie: rozmycie tła */
+  backdrop-filter: blur(4px); 
   -webkit-backdrop-filter: blur(4px);
 }
 
