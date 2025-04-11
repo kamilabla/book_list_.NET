@@ -47,7 +47,7 @@
 
 ```bash
 git clone https://github.com/kamilabla/book_list_.NET.git
-cd BookManager
+cd book_list_.NET
 dotnet restore
 dotnet ef database update
 dotnet run
