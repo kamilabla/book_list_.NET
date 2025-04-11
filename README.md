@@ -92,6 +92,9 @@ Then open the app in your browser at https://localhost:XXXX
 - **Accordion filter**
   Filter books with an accordion interface: show only read books or show only to-read books. Users can change the status of those books in accordion.
 ![image](https://github.com/user-attachments/assets/781cd251-780f-4dc6-b73a-faae557a4b3f)
+
+
+
 ![image](https://github.com/user-attachments/assets/97c0beef-8de1-4c82-adc0-293e327269f3)
 
 
