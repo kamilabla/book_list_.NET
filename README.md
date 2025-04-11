@@ -51,7 +51,49 @@ Then open the app in your browser at https://localhost:XXXX
 
 ## Views
 
-As a new user you're greeted with a 'Welcome' view, where you can go to either 'Books' or 'Privacy' sub-website.
+- **Main view**  
+    As a new user you're greeted with a 'Welcome' view, where you can go to either 'Books' or a 'Privacy' sub-website.
+![image](https://github.com/user-attachments/assets/51eebce3-bec1-4676-a2df-95e9aab4b303)
+
+
+- **User Login**
+    Users with accounts can login by typing providing their email and password. By checking 'Remember me' checkbox they allow the website to remember their data while logging.
+<img width="941" alt="image" src="https://github.com/user-attachments/assets/ec54e25f-c2fb-407f-a5fd-8126442cc629" />
+![image](https://github.com/user-attachments/assets/c875096e-a192-4dc0-baf7-658638761670)
+
+
+- **User Registration**
+    New users have the ability to make an account by providing their email, password and confirmation of the password.
+
+
+- **Forgotten password**
+   If the user has forgotten their password there is a possibility of resetting their password.
+
+
+  - **After logging or registration**
+   After logging in users receive access to the book list and can use the search bar to find books by title or author (search is case-insensitive) or sort books by title, author or publish date. Prices are displayed in both PLN and USD - the app fetches live currency data from the NBP API.
+
+
+- **Add new books**
+  They can add new books with title, author, price, date, and availability.
+
+
+- **Edit or delete books**
+  Edit or delete existing books. Each book is stored in the central database, visible in a shared list.
+
+
+- **Change status of a book**
+  For each book, users can choose "Already read" or "On the bookshelf" if they plan to read this book in the future.
+  These statuses are: saved per user, visible only to the logged-in user, easily changed with a single click.
+
+
+- **Accordion filter**
+  Filter books with an accordion interface: show only read books or show only to-read books. Users can change the status of those books in accordion.
+
+
+  
+
+
 
 
 
