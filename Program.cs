@@ -26,8 +26,9 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = "/Identity/Account/Login";
     options.LogoutPath = "/Identity/Account/Logout";
 
-    options.Cookie.MaxAge = null; // ← sesja tylko do zamknięcia przeglądarki
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30); 
     options.SlidingExpiration = false;
+    options.Cookie.MaxAge = TimeSpan.FromMinutes(30);
 });
 
 
