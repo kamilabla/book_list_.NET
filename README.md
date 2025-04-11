@@ -6,16 +6,20 @@
 
 ## Features
 
-- Register and log in with ASP.NET Core Identity
 - Add, edit, and delete books (title, author, price, date, availability)
-- Mark books as "Read" or "Want to read" — user-specific and private
 - Search books by title or author (case-insensitive)
 - Sort books by title, author or publish date
 - Pagination using `X.PagedList`
 - Fetches real-time USD exchange rate from NBP API
-- UI with Bootstrap 5 + glassmorphism styles
 - SQLite as the database
 - Accordion-based filtering of books by status (already read / to-read)
+
+## Extra Features
+
+- Register and log in with ASP.NET Core Identity -> Allows users to store their preferences in a secure way
+- Mark books as "Already read" or "On the bookshelf" — user-specific and private
+- UI with Bootstrap 5 + glassmorphism styles
+- Accordion-based filtering of books by status (already read / On the bookshelf)
 
 ---
 
