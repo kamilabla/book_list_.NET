@@ -10,7 +10,7 @@
 - Search books by title or author (case-insensitive)
 - Sort books by title, author or publish date
 - Pagination using `X.PagedList`
-- Fetches real-time USD exchange rate from NBP API
+- Fetches real-time USD exchange rate from NBP API and saves it after every login in **`CurrencyRates`** table.
 - SQLite as the database
 - Accordion-based filtering of books by status (already read / to-read)
 
@@ -45,14 +45,19 @@
 
 ### Installation
 
+In git bash or a similar tool:
 ```bash
-git clone https://github.com/kamilabla/BookManager.git
-cd BookManager
+git clone https://github.com/kamilabla/book_list_.NET.git
+```
+In project terminal:
+```
+cd book_list_.NET
 dotnet restore
 dotnet ef database update
 dotnet run
-Then open the app in your browser at https://localhost:XXXX 
 ```
+Then open the app in your browser at https://localhost:XXXX 
+
 
 ## Views
 
